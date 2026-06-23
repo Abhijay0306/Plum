@@ -77,12 +77,12 @@ export default function DocUploadCard({
 
   return (
     <div style={{
-      border: '1px solid var(--border-default)', borderRadius: 'var(--radius-lg)',
+      border: '1px solid var(--border-default)', borderRadius: 'var(--radius-xl)',
       padding: 16, marginBottom: 12,
-      background: 'var(--surface-sunken)',
+      background: 'var(--mc-lifted, #FCFBFA)',
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-        <span style={{ fontWeight: 600, fontSize: 13, color: '#6b7280' }}>Document {index + 1}</span>
+        <span style={{ fontWeight: 600, fontSize: 13, color: 'var(--text-secondary)' }}>Document {index + 1}</span>
         <button type="button" onClick={onRemove}
           style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-tertiary)', padding: '4px', borderRadius: 4, display: 'flex', alignItems: 'center' }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -96,9 +96,9 @@ export default function DocUploadCard({
           onDrop={e => { e.preventDefault(); setDragging(false); const f = e.dataTransfer.files[0]; if (f) handleFile(f) }}
           onClick={() => inputRef.current?.click()}
           style={{
-            border: `2px dashed ${dragging ? 'var(--plum-500)' : 'var(--border-strong)'}`,
-            borderRadius: 'var(--radius-md)', padding: '28px 20px', textAlign: 'center',
-            cursor: 'pointer', background: dragging ? 'var(--plum-50)' : 'var(--surface-card)', transition: 'all 0.15s',
+            border: `2px dashed ${dragging ? '#141413' : '#D1CDC7'}`,
+            borderRadius: 12, padding: '28px 20px', textAlign: 'center',
+            cursor: 'pointer', background: dragging ? '#F3F0EE' : 'var(--surface-card)', transition: 'all 0.15s',
           }}
         >
           <div style={{ marginBottom: 8, color: 'var(--text-disabled)' }}>
@@ -116,11 +116,11 @@ export default function DocUploadCard({
             : <div style={{ width: 72, height: 72, borderRadius: 6, border: '1px solid var(--border-default)', background: 'var(--status-rejected-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: 'var(--status-rejected-fg)' }}><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg></div>
           }
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 13, fontWeight: 600, color: '#111827', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {doc.file_name}
             </div>
             <div style={{ fontSize: 11, color: 'var(--text-tertiary)', marginTop: 2, marginBottom: 8 }}>
-              {doc.size_kb} KB · {doc.mime_type} · <span style={{ color: 'var(--plum-500)', fontWeight: 500 }}>auto-classified by AI</span>
+              {doc.size_kb} KB · {doc.mime_type} · <span style={{ color: '#141413', fontWeight: 600 }}>auto-classified by AI</span>
             </div>
             <button type="button" onClick={() => inputRef.current?.click()}
               style={{ fontSize: 12, color: 'var(--text-secondary)', background: 'var(--surface-card)', border: '1px solid var(--border-default)', borderRadius: 'var(--radius-sm)', padding: '4px 10px', cursor: 'pointer', fontFamily: 'var(--font-ui)' }}>
@@ -134,7 +134,7 @@ export default function DocUploadCard({
 
       <div style={{ marginTop: 12 }}>
         <label style={label}>
-          Patient name on document <span style={{ color: '#9ca3af', fontWeight: 400 }}>(optional)</span>
+          Patient name on document <span style={{ color: 'var(--text-tertiary)', fontWeight: 400 }}>(optional)</span>
         </label>
         <input
           style={inputStyle}

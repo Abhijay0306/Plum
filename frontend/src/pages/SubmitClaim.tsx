@@ -9,10 +9,10 @@ const CATEGORIES = ['CONSULTATION', 'DIAGNOSTIC', 'PHARMACY', 'DENTAL', 'VISION'
 
 const card: React.CSSProperties = {
   background: 'var(--surface-card)',
-  borderRadius: 'var(--radius-lg)',
+  borderRadius: 'var(--radius-xl)',
   border: '1px solid var(--border-default)',
   boxShadow: 'var(--shadow-sm)',
-  padding: 24,
+  padding: 28,
   marginBottom: 16,
 }
 
@@ -108,7 +108,7 @@ export default function SubmitClaim() {
   }
 
   return (
-    <div style={{ maxWidth: 680, margin: '0 auto', padding: 24 }}>
+    <div style={{ maxWidth: 720, margin: '0 auto', padding: '8px 24px 64px' }}>
       <form onSubmit={handleSubmit}>
         <div style={card}>
           <SectionLabel>Claim Details</SectionLabel>
@@ -169,9 +169,9 @@ export default function SubmitClaim() {
               Documents
             </div>
             <button type="button" onClick={addDoc} style={{
-              padding: '5px 12px', borderRadius: 'var(--radius-md)',
-              border: '1px solid var(--border-default)',
-              background: 'var(--surface-sunken)', color: 'var(--text-secondary)',
+              padding: '6px 16px', borderRadius: 999,
+              border: '1.5px solid #141413',
+              background: 'transparent', color: '#141413',
               fontSize: 12, fontWeight: 600, cursor: 'pointer',
               fontFamily: 'var(--font-ui)',
             }}>+ Add Document</button>
@@ -201,18 +201,18 @@ export default function SubmitClaim() {
         )}
 
         <button type="submit" disabled={loading} style={{
-          width: '100%', padding: '13px',
-          borderRadius: 'var(--radius-md)',
-          border: 'none',
-          background: loading ? 'var(--plum-300)' : 'var(--plum-500)',
-          color: '#fff',
-          fontWeight: 700, fontSize: 15,
+          width: '100%', padding: '14px',
+          borderRadius: 'var(--radius-lg)',
+          border: '1.5px solid #141413',
+          background: loading ? '#D1CDC7' : '#141413',
+          color: loading ? '#696969' : '#F3F0EE',
+          fontWeight: 600, fontSize: 15,
+          letterSpacing: '-0.01em',
           cursor: loading ? 'not-allowed' : 'pointer',
           fontFamily: 'var(--font-ui)',
-          boxShadow: loading ? 'none' : 'var(--shadow-md)',
-          transition: 'background 0.15s',
+          transition: 'background 0.15s, color 0.15s',
         }}>
-          {loading ? 'Processing… (AI is reading your documents)' : 'Submit Claim →'}
+          {loading ? 'Processing… AI is reading your documents' : 'Submit Claim →'}
         </button>
       </form>
     </div>

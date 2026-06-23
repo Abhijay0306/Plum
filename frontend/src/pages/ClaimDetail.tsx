@@ -10,7 +10,7 @@ import type { DocEntry } from '../components/DocUploadCard'
 // ─── Shared card style ────────────────────────────────────────────────────────
 const card: React.CSSProperties = {
   background: 'var(--surface-card)',
-  borderRadius: 'var(--radius-lg)',
+  borderRadius: 'var(--radius-xl)',
   border: '1px solid var(--border-default)',
   boxShadow: 'var(--shadow-sm)',
   padding: 24,
@@ -124,35 +124,35 @@ function ResubmitSection({ claim, onResubmit }: { claim: ClaimResult; onResubmit
   }
 
   return (
-    <div style={{ border: '1.5px solid var(--plum-300)', borderRadius: 'var(--radius-lg)', overflow: 'hidden', marginBottom: 16 }}>
+    <div style={{ border: '1.5px solid #D1CDC7', borderRadius: 'var(--radius-xl)', overflow: 'hidden', marginBottom: 16 }}>
       <button onClick={() => setOpen(o => !o)} style={{
         width: '100%', padding: '14px 20px',
-        background: open ? 'var(--plum-700)' : 'var(--plum-50)',
+        background: open ? '#141413' : '#FCFBFA',
         border: 'none', cursor: 'pointer',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         transition: 'background 0.15s',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left' }}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" style={{ color: open ? '#fff' : 'var(--plum-500)', flexShrink: 0 }}><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" style={{ color: open ? '#F3F0EE' : '#141413', flexShrink: 0 }}><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
           <div>
-            <div style={{ fontWeight: 700, fontSize: 14, color: open ? '#fff' : 'var(--plum-700)' }}>
+            <div style={{ fontWeight: 700, fontSize: 14, color: open ? '#F3F0EE' : '#141413' }}>
               Resubmit with Correct Documents
             </div>
-            <div style={{ fontSize: 12, color: open ? 'var(--plum-200)' : 'var(--text-tertiary)', marginTop: 2 }}>
+            <div style={{ fontSize: 12, color: open ? '#D1CDC7' : 'var(--text-tertiary)', marginTop: 2 }}>
               All other claim details are pre-filled — just upload the correct files
             </div>
           </div>
         </div>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: open ? '#fff' : 'var(--plum-500)', flexShrink: 0 }}>{open ? <polyline points="18 15 12 9 6 15"/> : <polyline points="6 9 12 15 18 9"/>}</svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: open ? '#F3F0EE' : '#141413', flexShrink: 0 }}>{open ? <polyline points="18 15 12 9 6 15"/> : <polyline points="6 9 12 15 18 9"/>}</svg>
       </button>
 
       {open && (
         <div style={{ padding: 20, background: 'var(--surface-card)' }}>
           <div style={{
-            background: 'var(--plum-50)', borderRadius: 'var(--radius-md)',
+            background: '#F3F0EE', borderRadius: 12,
             padding: '10px 14px', marginBottom: 16,
             fontSize: 13, color: 'var(--text-secondary)',
-            border: '1px solid var(--plum-200)',
+            border: '1px solid #D1CDC7',
           }}>
             <strong style={{ color: 'var(--text-primary)' }}>Pre-filled:</strong>{' '}
             {claim.member_id} · {claim.claim_category} · ₹{claim.claimed_amount.toLocaleString('en-IN')}
@@ -180,10 +180,12 @@ function ResubmitSection({ claim, onResubmit }: { claim: ClaimResult; onResubmit
           )}
 
           <button onClick={handleResubmit} disabled={submitting} style={{
-            width: '100%', padding: 12, borderRadius: 'var(--radius-md)', border: 'none',
-            background: submitting ? 'var(--plum-300)' : 'var(--plum-500)',
-            color: '#fff', fontWeight: 700, fontSize: 14, cursor: submitting ? 'not-allowed' : 'pointer',
+            width: '100%', padding: 12, borderRadius: 'var(--radius-lg)', border: '1.5px solid #141413',
+            background: submitting ? '#D1CDC7' : '#141413',
+            color: submitting ? '#696969' : '#F3F0EE',
+            fontWeight: 600, fontSize: 14, cursor: submitting ? 'not-allowed' : 'pointer',
             fontFamily: 'var(--font-ui)',
+            letterSpacing: '-0.01em',
           }}>
             {submitting ? 'Processing… (AI reading your documents)' : 'Resubmit Claim →'}
           </button>
@@ -213,7 +215,7 @@ export default function ClaimDetail() {
   const fb = d.financial_breakdown
 
   return (
-    <div style={{ padding: 24, maxWidth: 1100, margin: '0 auto' }}>
+    <div style={{ padding: '8px 32px 64px', maxWidth: 1200, margin: '0 auto' }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 24, gap: 16, flexWrap: 'wrap' }}>
         <div>
@@ -221,7 +223,7 @@ export default function ClaimDetail() {
             ← All Claims
           </Link>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-            <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 20, fontWeight: 500, color: 'var(--plum-500)', letterSpacing: '0.02em' }}>
+            <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 20, fontWeight: 500, color: '#141413', letterSpacing: '0.02em' }}>
               {claim.claim_id}
             </h1>
             <DecisionBadge decision={d.decision} />
@@ -356,9 +358,9 @@ export default function ClaimDetail() {
                 </div>
               )}
 
-              <div style={{ borderTop: '2px solid var(--plum-200)', marginTop: 8, paddingTop: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+              <div style={{ borderTop: '2px solid #D1CDC7', marginTop: 8, paddingTop: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                 <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)' }}>Approved</span>
-                <span style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700, color: 'var(--status-approved-fg)', fontVariantNumeric: 'tabular-nums' }}>
+                <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--status-approved-fg)', fontVariantNumeric: 'tabular-nums' }}>
                   ₹{fb.approved_amount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                 </span>
               </div>

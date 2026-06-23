@@ -35,7 +35,7 @@ def detect_fraud(
             errors=["FraudDetectorAgent failed: simulated error"],
             confidence_delta=-0.15,
         ))
-        return FraudResult(fraud_score=0.0, signals=["FRAUD_CHECK_SKIPPED"], route_to_manual=True)
+        return FraudResult(fraud_score=0.0, signals=["FRAUD_CHECK_SKIPPED"], route_to_manual=False)
 
     thresholds = POLICY.get("fraud_thresholds", {})
     same_day_limit = thresholds.get("same_day_claims_limit", 2)

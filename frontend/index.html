@@ -6,57 +6,77 @@
     <title>Plum Claims</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,600;0,700;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       :root {
-        --plum-900: #1A0B40;
-        --plum-800: #2D1165;
-        --plum-700: #4A1B8A;
-        --plum-600: #6027AE;
-        --plum-500: #7C3AED;
-        --plum-400: #9D5CF5;
-        --plum-300: #C4B5FD;
-        --plum-200: #DDD6FE;
-        --plum-100: #EDE9FE;
-        --plum-50:  #F5F3FF;
+        /* Mastercard palette */
+        --mc-ink:         #141413;
+        --mc-charcoal:    #262627;
+        --mc-canvas:      #F3F0EE;
+        --mc-lifted:      #FCFBFA;
+        --mc-white:       #FFFFFF;
+        --mc-orange:      #CF4500;
+        --mc-orange-lt:   #F37338;
+        --mc-slate:       #696969;
+        --mc-dust:        #D1CDC7;
+        --mc-bone:        #F4F4F4;
 
-        --surface-base:    #FAFAF9;
-        --surface-card:    #FFFFFF;
-        --surface-sunken:  #F3F2F0;
-        --surface-sidebar: #0F0A1E;
-        --surface-sidebar-hover:  #1D1433;
-        --surface-sidebar-active: #2D1B54;
+        /* Remap plum → ink so existing components pick up the new palette */
+        --plum-900: #141413;
+        --plum-800: #141413;
+        --plum-700: #141413;
+        --plum-600: #262627;
+        --plum-500: #141413;
+        --plum-400: #262627;
+        --plum-300: #D1CDC7;
+        --plum-200: #D1CDC7;
+        --plum-100: #F3F0EE;
+        --plum-50:  #FCFBFA;
 
-        --text-primary:   #0F0A1A;
-        --text-secondary: #4A4453;
-        --text-tertiary:  #7E7689;
-        --text-disabled:  #B0ABBA;
-        --text-inverse:   #FFFFFF;
+        /* Surfaces */
+        --surface-base:           #F3F0EE;
+        --surface-card:           #FCFBFA;
+        --surface-sunken:         #F3F0EE;
+        --surface-sidebar:        #141413;
+        --surface-sidebar-hover:  #262627;
+        --surface-sidebar-active: #262627;
 
-        --border-default: #E5E2DF;
-        --border-strong:  #C8C5C0;
-        --border-focus:   var(--plum-500);
+        /* Text */
+        --text-primary:   #141413;
+        --text-secondary: #262627;
+        --text-tertiary:  #696969;
+        --text-disabled:  #D1CDC7;
+        --text-inverse:   #F3F0EE;
 
-        --shadow-sm:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-        --shadow-md:  0 4px 12px rgba(79,29,148,0.08);
-        --shadow-lg:  0 8px 24px rgba(0,0,0,0.12);
+        /* Borders */
+        --border-default: #D1CDC7;
+        --border-strong:  #141413;
+        --border-focus:   #141413;
 
-        --radius-sm:  4px;
-        --radius-md:  8px;
-        --radius-lg:  12px;
-        --radius-xl:  16px;
-        --radius-pill: 99px;
+        /* Shadows — Mastercard atmospheric style */
+        --shadow-sm:  rgba(0, 0, 0, 0.04) 0px 4px 24px 0px;
+        --shadow-md:  rgba(0, 0, 0, 0.08) 0px 24px 48px 0px;
+        --shadow-lg:  rgba(0, 0, 0, 0.12) 0px 32px 64px 0px;
 
-        --font-display: 'Fraunces', Georgia, serif;
-        --font-ui:      'Plus Jakarta Sans', -apple-system, sans-serif;
+        /* Border radii — Mastercard scale (no 8-16 middle ground) */
+        --radius-sm:   4px;
+        --radius-md:   8px;
+        --radius-lg:   20px;
+        --radius-xl:   40px;
+        --radius-pill: 999px;
+
+        /* Typography */
+        --font-ui:      'Sofia Sans', Arial, sans-serif;
+        --font-display: 'Sofia Sans', Arial, sans-serif;
         --font-mono:    'JetBrains Mono', monospace;
 
+        /* Semantic status — keep distinct semantic colors */
         --status-approved-fg:  #166534; --status-approved-bg:  #F0FDF4; --status-approved-bd:  #BBF7D0;
         --status-rejected-fg:  #991B1B; --status-rejected-bg:  #FEF2F2; --status-rejected-bd:  #FECACA;
         --status-review-fg:    #B45309; --status-review-bg:    #FFFBEB; --status-review-bd:    #FDE68A;
-        --status-docs-fg:      #7C3AED; --status-docs-bg:      #F5F3FF; --status-docs-bd:      #C4B5FD;
+        --status-docs-fg:      #0F766E; --status-docs-bg:      #F0FDFA; --status-docs-bd:      #99F6E4;
         --status-paid-fg:      #065F46; --status-paid-bg:      #ECFDF5; --status-paid-bd:      #6EE7B7;
         --status-escalated-fg: #9F1239; --status-escalated-bg: #FFF1F2; --status-escalated-bd: #FECDD3;
       }
@@ -77,12 +97,11 @@
 
       ::-webkit-scrollbar { width: 6px; height: 6px; }
       ::-webkit-scrollbar-track { background: transparent; }
-      ::-webkit-scrollbar-thumb { background: #D4D0CC; border-radius: 99px; }
+      ::-webkit-scrollbar-thumb { background: var(--mc-dust); border-radius: 99px; }
       ::-webkit-scrollbar-thumb:hover { background: #B0ABBA; }
 
-      /* Focus ring */
       *:focus-visible {
-        outline: 2px solid var(--plum-500);
+        outline: 2px solid var(--mc-ink);
         outline-offset: 2px;
       }
     </style>

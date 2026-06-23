@@ -31,7 +31,7 @@ export default function ClaimsList() {
   )
 
   return (
-    <div style={{ padding: 24 }}>
+    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '8px 32px 64px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
         <div>
           <h1 style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>
@@ -48,10 +48,11 @@ export default function ClaimsList() {
         </div>
         <Link to="/" style={{
           display: 'inline-flex', alignItems: 'center', gap: 6,
-          padding: '8px 16px', borderRadius: 'var(--radius-md)',
-          background: 'var(--plum-500)', color: '#fff',
+          padding: '8px 20px', borderRadius: 999,
+          background: '#141413', color: '#F3F0EE',
           fontSize: 13, fontWeight: 600,
-          boxShadow: 'var(--shadow-sm)',
+          letterSpacing: '-0.01em',
+          border: '1.5px solid #141413',
         }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           New Claim
@@ -60,7 +61,7 @@ export default function ClaimsList() {
 
       {filtered.length === 0 ? (
         <div style={{
-          background: 'var(--surface-card)', borderRadius: 'var(--radius-lg)',
+          background: 'var(--surface-card)', borderRadius: 'var(--radius-xl)',
           padding: '64px 48px', textAlign: 'center',
           border: '1px solid var(--border-default)',
           boxShadow: 'var(--shadow-sm)',
@@ -72,8 +73,9 @@ export default function ClaimsList() {
             {q ? `No claims found matching "${q}".` : 'No claims submitted yet. Start by filing your first claim.'}
           </div>
           <Link to={q ? '/claims' : '/'} style={{
-            display: 'inline-flex', padding: '9px 20px', borderRadius: 'var(--radius-md)',
-            background: 'var(--plum-500)', color: '#fff', fontSize: 13, fontWeight: 600,
+            display: 'inline-flex', padding: '9px 20px', borderRadius: 999,
+            background: '#141413', color: '#F3F0EE', fontSize: 13, fontWeight: 600,
+            border: '1.5px solid #141413',
           }}>
             {q ? 'Clear search' : 'Submit First Claim →'}
           </Link>
@@ -81,7 +83,7 @@ export default function ClaimsList() {
       ) : (
         <div style={{
           background: 'var(--surface-card)',
-          borderRadius: 'var(--radius-lg)',
+          borderRadius: 'var(--radius-xl)',
           border: '1px solid var(--border-default)',
           boxShadow: 'var(--shadow-sm)',
           overflow: 'hidden',
@@ -111,7 +113,7 @@ export default function ClaimsList() {
                   onMouseLeave={() => setHovered(null)}
                   style={{
                     borderBottom: '1px solid var(--border-default)',
-                    background: hovered === c.claim_id ? 'var(--plum-50)' : 'transparent',
+                    background: hovered === c.claim_id ? '#F3F0EE' : 'transparent',
                     transition: 'background 0.1s',
                   }}
                 >
@@ -119,7 +121,8 @@ export default function ClaimsList() {
                     <Link to={`/claims/${c.claim_id}`} style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: 13,
-                      color: 'var(--plum-500)',
+                      color: '#141413',
+            textDecoration: 'underline',
                       fontWeight: 500,
                       letterSpacing: '0.02em',
                     }}>

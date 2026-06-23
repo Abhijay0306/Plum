@@ -63,9 +63,9 @@ function TestCaseCard({ tc }: { tc: TestCaseMeta }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5, flexWrap: 'wrap' }}>
             <span style={{
               fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 500,
-              color: 'var(--plum-500)', background: 'var(--plum-50)',
+              color: '#141413', background: '#F3F0EE',
               padding: '2px 8px', borderRadius: 'var(--radius-pill)',
-              border: '1px solid var(--plum-200)',
+              border: '1px solid #D1CDC7',
             }}>{tc.case_id}</span>
             {tc.expected_decision && <DecisionBadge decision={tc.expected_decision} />}
             {tc.expected_amount !== null && (
@@ -83,13 +83,14 @@ function TestCaseCard({ tc }: { tc: TestCaseMeta }) {
           onClick={handleRun}
           disabled={running}
           style={{
-            padding: '7px 16px', borderRadius: 'var(--radius-md)',
-            border: 'none',
-            background: running ? 'var(--plum-100)' : 'var(--plum-500)',
-            color: running ? 'var(--plum-600)' : '#fff',
+            padding: '7px 18px', borderRadius: 999,
+            border: '1.5px solid #141413',
+            background: running ? '#D1CDC7' : '#141413',
+            color: running ? '#696969' : '#F3F0EE',
             fontWeight: 600, fontSize: 13, cursor: running ? 'not-allowed' : 'pointer',
             flexShrink: 0, fontFamily: 'var(--font-ui)',
             transition: 'background 0.15s',
+            letterSpacing: '-0.01em',
           }}
         >
           {running ? 'Running…' : result ? 'Re-run' : 'Run'}
@@ -142,9 +143,9 @@ function TestCaseCard({ tc }: { tc: TestCaseMeta }) {
           <button
             onClick={() => navigate(`/claims/${result.claim_id}`, { state: result })}
             style={{
-              fontSize: 12, color: 'var(--plum-500)',
-              background: 'none', border: '1px solid var(--plum-200)',
-              borderRadius: 'var(--radius-md)', padding: '5px 12px',
+              fontSize: 12, color: '#141413',
+              background: 'none', border: '1.5px solid #141413',
+              borderRadius: 999, padding: '5px 14px',
               cursor: 'pointer', fontWeight: 600, fontFamily: 'var(--font-ui)',
             }}
           >
@@ -187,7 +188,7 @@ export default function TestCases() {
   const totalRun = results.size
 
   return (
-    <div style={{ padding: 24 }}>
+    <div style={{ maxWidth: 1000, margin: '0 auto', padding: '8px 32px 64px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
         <div>
           <h1 style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.01em', marginBottom: 4 }}>
@@ -201,13 +202,14 @@ export default function TestCases() {
           onClick={runAll}
           disabled={runningAll || cases.length === 0}
           style={{
-            padding: '9px 20px', borderRadius: 'var(--radius-md)', border: 'none',
-            background: runningAll ? 'var(--plum-100)' : 'var(--plum-500)',
-            color: runningAll ? 'var(--plum-600)' : '#fff',
-            fontWeight: 700, fontSize: 13,
+            padding: '9px 24px', borderRadius: 999,
+            border: '1.5px solid #141413',
+            background: runningAll ? '#D1CDC7' : '#141413',
+            color: runningAll ? '#696969' : '#F3F0EE',
+            fontWeight: 600, fontSize: 13,
             cursor: runningAll ? 'not-allowed' : 'pointer',
             fontFamily: 'var(--font-ui)',
-            boxShadow: runningAll ? 'none' : 'var(--shadow-sm)',
+            letterSpacing: '-0.01em',
           }}
         >
           {runningAll ? 'Running all…' : 'Run All'}
