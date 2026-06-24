@@ -1,13 +1,26 @@
 from __future__ import annotations
 import json
 from datetime import datetime
+from urllib.parse import urlparse, urlencode, parse_qs, urlunparse
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import String, Float, Text, DateTime
 from config import DATABASE_URL
 
 
-engine = create_async_engine(DATABASE_URL, echo=False)
+def _clean_db_url(url: str) -> tuple[str, dict]:
+    if not url.startswith("postgresql"):
+        return url, {}
+    parsed = urlparse(url)
+    params = parse_qs(parsed.query)
+    params.pop("sslmode", None)
+    params.pop("channel_binding", None)
+    clean = parsed._replace(query=urlencode({k: v[0] for k, v in params.items()}))
+    return urlunparse(clean), {"ssl": "require"}
+
+
+_db_url, _connect_args = _clean_db_url(DATABASE_URL)
+engine = create_async_engine(_db_url, echo=False, connect_args=_connect_args)
 SessionLocal = async_sessionmaker(engine, expire_on_commit=False)
 
 
